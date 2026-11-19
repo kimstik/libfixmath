@@ -83,7 +83,7 @@ static inline _int64_t int64_shift(_int64_t x, int8_t y) {
 		ret.hi = (x.lo << (y - 32));
 	} 
 	else if(y > 0) {
-		ret.hi = (x.hi << y) | (x.lo >> (32 - y));
+		ret.hi = ((uint32_t)x.hi << y) | (x.lo >> (32 - y));
 		ret.lo = (x.lo << y);
 	}
 	else {
@@ -92,7 +92,7 @@ static inline _int64_t int64_shift(_int64_t x, int8_t y) {
 			ret.lo = (x.hi >> (y - 32));
 			ret.hi = (x.hi < 0) ? -1 : 0;
 		} else {
-			ret.lo = (x.lo >> y) | (x.hi << (32 - y));
+			ret.lo = (x.lo >> y) | ((uint32_t)x.hi << (32 - y));
 		  ret.hi = (x.hi >> y);
 		}
 	}
