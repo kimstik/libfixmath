@@ -85,7 +85,10 @@ int main(int argc, char *argv[])
     TEST(test_lerp());
     TEST(test_macros());
     TEST(test_trig());
-    //TEST(test_str());
+#ifndef FIXMATH_NO_ROUNDING
+    // The expected strings assume rounding
+    TEST(test_str());
+#endif
 #endif
     return 0;
 }
