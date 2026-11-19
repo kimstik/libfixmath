@@ -117,7 +117,7 @@ static inline _int64_t int64_mul_i64_i32(_int64_t x, int32_t y) {
 	int neg = ((x.hi ^ y) < 0);
 	if(x.hi < 0)
 		x = int64_neg(x);
-	uint32_t ypos = (y < 0)? (-y) : (y);
+	uint32_t ypos = (y < 0)? (-(uint32_t)y) : ((uint32_t)y);
 
 	uint32_t _x[4] = { (x.lo & 0xFFFF), (x.lo >> 16), (x.hi & 0xFFFF), (x.hi >> 16) };
 	uint32_t _y[2] = { (ypos & 0xFFFF), (ypos >> 16) };
