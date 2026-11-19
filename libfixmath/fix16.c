@@ -493,6 +493,9 @@ fix16_t fix16_mod(fix16_t x, fix16_t y)
 		/* Note that in C90, the sign of result of the modulo operation is
 		 * undefined. in C99, it's the same as the dividend (aka numerator).
 		 */
+		/* fix16_minimum % -1 overflows, although x % -1 is always zero. */
+		if (y == -1)
+			return 0;
 		x %= y;
 	#endif
 
