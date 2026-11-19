@@ -364,7 +364,7 @@ fix16_t fix16_div(fix16_t a, fix16_t b)
 				return fix16_overflow;
 		#endif
 		
-		result = -result;
+		result = -(uint32_t)result;
 	}
 	
 	return result;
@@ -447,7 +447,7 @@ fix16_t fix16_div(fix16_t a, fix16_t b)
 				return fix16_overflow;
 		#endif
 		
-		result = -result;
+		result = -(uint32_t)result;
 	}
 	
 	return result;
