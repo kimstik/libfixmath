@@ -81,6 +81,13 @@ static int test_str_below_minimum(void)
     return 0;
 }
 
+/* The remainder of the minimum divided by raw -1 is zero */
+static int test_mod_minimum(void)
+{
+    ASSERT_EQ_INT(fix16_mod(fix16_minimum, -1), 0);
+    return 0;
+}
+
 int test_staging(void)
 {
     TEST(test_exp_cache_sign());
@@ -92,5 +99,6 @@ int test_staging(void)
     TEST(test_atan_large());
     TEST(test_cos_large());
     TEST(test_str_below_minimum());
+    TEST(test_mod_minimum());
     return 0;
 }
