@@ -55,10 +55,11 @@ static inline int int64_cmp_le(_int64_t x, _int64_t y) { return ((x.hi < y.hi) |
 
 static inline _int64_t int64_add(_int64_t x, _int64_t y) {
 	_int64_t ret;
-	ret.hi = x.hi + y.hi;
+	uint32_t hi = (uint32_t)x.hi + y.hi;
 	ret.lo = x.lo + y.lo;
 	if((ret.lo < x.lo) || (ret.lo < y.lo))
-		ret.hi++;
+		hi++;
+	ret.hi = hi;
 	return ret;
 }
 
