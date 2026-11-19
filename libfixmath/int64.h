@@ -105,7 +105,7 @@ static inline _int64_t int64_mul_i32_i32(int32_t x, int32_t y) {
 
 	 int32_t r_hi = hi[0] * hi[1];
 	 int32_t r_md = (hi[0] * lo[1]) + (hi[1] * lo[0]);
-	uint32_t r_lo = lo[0] * lo[1];
+	uint32_t r_lo = (uint32_t)lo[0] * lo[1];
 
 	_int64_t r_hilo64 = (_int64_t){ r_hi, r_lo };
 	_int64_t r_md64 = int64_shift(int64_from_int32(r_md), 16);
