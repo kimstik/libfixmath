@@ -134,7 +134,7 @@ fix16_t fix16_mul(fix16_t inArg0, fix16_t inArg1)
 	int32_t product_hi = AC + (AD_CB >> 16);
 	
 	// Handle carry from lower 32 bits to upper part of result.
-	uint32_t ad_cb_temp = AD_CB << 16;
+	uint32_t ad_cb_temp = (uint32_t)AD_CB << 16;
 	uint32_t product_lo = BD + ad_cb_temp;
 	if (product_lo < BD)
 		product_hi++;
@@ -146,7 +146,7 @@ fix16_t fix16_mul(fix16_t inArg0, fix16_t inArg1)
 #endif
 	
 #ifdef FIXMATH_NO_ROUNDING
-	return (product_hi << 16) | (product_lo >> 16);
+	return ((uint32_t)product_hi << 16) | (product_lo >> 16);
 #else
 	// Subtracting 0x8000 (= 0.5) and then using signed right shift
 	// achieves proper rounding to result-1, except in the corner
@@ -162,7 +162,7 @@ fix16_t fix16_mul(fix16_t inArg0, fix16_t inArg1)
 	// as dividing by 0x10000. For example if product = -1, result will
 	// also be -1 and not 0. This is compensated by adding +1 to the result
 	// and compensating this in turn in the rounding above.
-	fix16_t result = (product_hi << 16) | (product_lo >> 16);
+	uint32_t result = ((uint32_t)product_hi << 16) | (product_lo >> 16);
 	result += 1;
 	return result;
 #endif
