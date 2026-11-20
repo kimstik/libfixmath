@@ -29,5 +29,6 @@ int test_lerp()
     ASSERT_EQ_INT(fix16_lerp32(fix16_minimum, fix16_maximum, 0xffffffff),
                   (fix16_maximum - 1));
     ASSERT_EQ_INT(fix16_lerp32(-fix16_maximum, fix16_maximum, 0x80000000), 0);
+    ASSERT_EQ_INT(fix16_lerp32(fix16_minimum, fix16_minimum, 1), fix16_minimum);
     return 0;
 }

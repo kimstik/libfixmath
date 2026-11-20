@@ -2,12 +2,11 @@ file(GLOB tests-srcs tests/*.c tests/*.h)
 
 enable_testing()
 
-# -fno-sanitize-recover
 if(APPLE AND CMAKE_OSX_ARCHITECTURES MATCHES "ppc|ppc64")
 # Darwin PPC does not support ubsan presently.
     set(sanitizer_opts "")
 else()
-    set(sanitizer_opts -fsanitize=undefined)
+    set(sanitizer_opts -fsanitize=undefined -fno-sanitize-recover)
 endif()
 
 add_custom_target(make_tests)

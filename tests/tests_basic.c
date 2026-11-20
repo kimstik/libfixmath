@@ -293,8 +293,8 @@ int test_mod_short(void)
         {
             fix16_t a = testcases[i];
             fix16_t b = testcases[j];
-            // x % 0 is undefined and fix16_minimum % -1 overflows
-            if (b == 0 || (a == fix16_minimum && b == -1))
+            // x % 0 is undefined
+            if (b == 0)
             {
                 continue;
             }
