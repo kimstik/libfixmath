@@ -52,7 +52,6 @@ int test_add_short(void)
         {
             fix16_t a      = testcases[i];
             fix16_t b      = testcases[j];
-            fix16_t result = fix16_add(a, b);
 
             double fa      = fix16_to_dbl(a);
             double fb      = fix16_to_dbl(b);
@@ -63,12 +62,12 @@ int test_add_short(void)
             if ((fa + fb > max) || (fa + fb < min))
             {
 #ifndef FIXMATH_NO_OVERFLOW
-                ASSERT_EQ_INT(result, fix16_overflow);
+                ASSERT_EQ_INT(fix16_add(a, b), fix16_overflow);
 #endif
             }
             else
             {
-                ASSERT_NEAR_DOUBLE(fresult, fix16_to_dbl(result),
+                ASSERT_NEAR_DOUBLE(fresult, fix16_to_dbl(fix16_add(a, b)),
                                    fix16_to_dbl(fix16_eps), "%f + %f", fa, fb);
             }
         }
@@ -255,7 +254,6 @@ int test_sub_short()
         {
             fix16_t a      = testcases[i];
             fix16_t b      = testcases[j];
-            fix16_t result = fix16_sub(a, b);
 
             double fa      = fix16_to_dbl(a);
             double fb      = fix16_to_dbl(b);
@@ -266,12 +264,12 @@ int test_sub_short()
             if ((fa - fb > max) || (fa - fb < min))
             {
 #ifndef FIXMATH_NO_OVERFLOW
-                ASSERT_EQ_INT(result, fix16_overflow);
+                ASSERT_EQ_INT(fix16_sub(a, b), fix16_overflow);
 #endif
             }
             else
             {
-                ASSERT_NEAR_DOUBLE(fresult, fix16_to_dbl(result),
+                ASSERT_NEAR_DOUBLE(fresult, fix16_to_dbl(fix16_sub(a, b)),
                                    fix16_to_dbl(fix16_eps), "%f - %f", fa, fb);
             }
         }
