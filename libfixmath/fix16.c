@@ -246,7 +246,7 @@ fix16_t fix16_mul(fix16_t inArg0, fix16_t inArg1)
 	/* Figure out the sign of result */
 	if ((inArg0 >= 0) != (inArg1 >= 0))
 	{
-		result = -result;
+		result = -(uint32_t)result;
 	}
 	
 	return result;
